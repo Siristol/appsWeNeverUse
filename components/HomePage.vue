@@ -71,7 +71,6 @@
             >
               <div class="text-white text-center">
                 <div class="text-xs font-bold truncate">{{ app.name }}</div>
-                <div class="text-xs text-gray-300">{{ app.year }}</div>
               </div>
             </div>
           </div>

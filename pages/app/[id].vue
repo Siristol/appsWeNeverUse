@@ -12,7 +12,6 @@
         <div class="text-white text-2xl md:text-3xl mb-10 leading-relaxed text-center">{{ app.description }}</div>
         <div class="flex flex-wrap gap-8 mb-10">
           <span class="bg-pink-500/90 text-white px-8 py-3 rounded-full text-2xl font-bold shadow-lg">⭐ {{ app.rating }}</span>
-          <span class="bg-blue-500/90 text-white px-8 py-3 rounded-full text-2xl font-bold shadow-lg">📅 {{ app.year }}</span>
         </div>
         <div v-if="app.screenshots && app.screenshots.length" class="w-full mb-10">
           <div class="text-white font-bold text-2xl mb-4">Skjermbilder:</div>
