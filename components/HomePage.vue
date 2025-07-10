@@ -107,37 +107,26 @@
 </template>
 
 <script setup>
-import { computed, reactive } from 'vue'
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { apps as sharedApps } from '~/data/apps.js'
+import { useAppRevealsStore } from '~/stores/appReveals.js'
+import { storeToRefs } from 'pinia'
 
-// Create a reactive copy of the shared apps and add reveal state
-const apps = reactive(
-  sharedApps.map(app => ({
-    ...app,
-    revealed: false,
-    justRevealed: false
-  }))
-)
+const appRevealsStore = useAppRevealsStore()
+const { reveals } = storeToRefs(appRevealsStore)
+const apps = computed(() => sharedApps.map(app => ({
+  ...app,
+  ...reveals.value.find(r => r.id === app.id)
+})))
 
-const appsRevealed = computed(() => apps.filter(app => app.revealed).length)
-const totalApps = computed(() => apps.length)
+const appsRevealed = computed(() => reveals.value.filter(app => app.revealed).length)
+const totalApps = computed(() => reveals.value.length)
 
 const router = useRouter()
-const revealApp = (app) => {
-  if (!app.revealed) {
-    app.revealed = true
-    app.justRevealed = true
-    setTimeout(() => {
-      app.justRevealed = false
-    }, 1000)
-    console.log(`🎉 You revealed ${app.name}!`)
-  }
-}
-
 const handleAppClick = (app) => {
   if (!app.revealed) {
-    revealApp(app)
+    appRevealsStore.revealApp(app.id)
   } else {
     goToApp(app)
   }
@@ -148,10 +137,10 @@ const goToApp = (app) => {
 }
 
 const revealRandomApp = () => {
-  const unrevealedApps = apps.filter(app => !app.revealed)
+  const unrevealedApps = apps.value.filter(app => !app.revealed)
   if (unrevealedApps.length > 0) {
     const randomApp = unrevealedApps[Math.floor(Math.random() * unrevealedApps.length)]
-    revealApp(randomApp)
+    appRevealsStore.revealApp(randomApp.id)
   }
 }
 </script>

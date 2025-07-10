@@ -26,8 +26,17 @@
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
 import { apps } from '~/data/apps.js'
+import { useAppRevealsStore } from '~/stores/appReveals.js'
+import { storeToRefs } from 'pinia'
+
+const appRevealsStore = useAppRevealsStore()
+const { reveals } = storeToRefs(appRevealsStore)
 
 const route = useRoute()
 const appId = computed(() => Number(route.params.id))
-const app = computed(() => apps.find(a => a.id === appId.value))
+const app = computed(() => {
+  const base = apps.find(a => a.id === appId.value)
+  const reveal = reveals.value.find(r => r.id === appId.value)
+  return base && reveal ? { ...base, ...reveal } : base
+})
 </script>
