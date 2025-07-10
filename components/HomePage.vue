@@ -37,7 +37,7 @@
         <div
           v-for="app in apps"
           :key="app.id"
-          @click="revealApp(app)"
+          @click="handleAppClick(app)"
           class="app-card relative aspect-square rounded-3xl overflow-hidden cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
           :class="{
             'blur-md grayscale': !app.revealed,
@@ -107,52 +107,48 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { computed, reactive } from 'vue'
+import { useRouter } from 'vue-router'
+import { apps as sharedApps } from '~/data/apps.js'
 
-// Sample discontinued apps data with placeholder icons
-const apps = ref([
-  { id: 1, name: 'Vine', icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" rx="20" fill="%2300bf63"/><text x="50" y="50" text-anchor="middle" dy="0.3em" fill="white" font-family="sans-serif" font-size="16" font-weight="bold">VINE</text></svg>', year: '2013-2017', revealed: false, justRevealed: false },
-  { id: 2, name: 'Google+', icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" rx="20" fill="%23dd4b39"/><text x="50" y="50" text-anchor="middle" dy="0.3em" fill="white" font-family="sans-serif" font-size="20" font-weight="bold">G+</text></svg>', year: '2011-2019', revealed: false, justRevealed: false },
-  { id: 3, name: 'Flappy Bird', icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" rx="20" fill="%2370c5ce"/><text x="50" y="50" text-anchor="middle" dy="0.3em" font-size="30">🐦</text></svg>', year: '2013-2014', revealed: false, justRevealed: false },
-  { id: 4, name: 'Path', icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" rx="20" fill="%23ee3124"/><text x="50" y="50" text-anchor="middle" dy="0.3em" fill="white" font-family="sans-serif" font-size="16" font-weight="bold">PATH</text></svg>', year: '2010-2018', revealed: false, justRevealed: false },
-  { id: 5, name: 'Yo', icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" rx="20" fill="%239c27b0"/><text x="50" y="50" text-anchor="middle" dy="0.3em" fill="white" font-family="sans-serif" font-size="24" font-weight="bold">YO</text></svg>', year: '2014-2016', revealed: false, justRevealed: false },
-  { id: 6, name: 'Clubhouse', icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" rx="20" fill="%23f2c94c"/><text x="50" y="50" text-anchor="middle" dy="0.3em" font-size="30">🏠</text></svg>', year: '2020-2023', revealed: false, justRevealed: false },
-  { id: 7, name: 'HQ Trivia', icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" rx="20" fill="%23667eea"/><text x="50" y="50" text-anchor="middle" dy="0.3em" fill="white" font-family="sans-serif" font-size="20" font-weight="bold">HQ</text></svg>', year: '2017-2020', revealed: false, justRevealed: false },
-  { id: 8, name: 'Musical.ly', icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" rx="20" fill="%23ff006e"/><text x="50" y="50" text-anchor="middle" dy="0.3em" font-size="30">🎵</text></svg>', year: '2014-2018', revealed: false, justRevealed: false },
-  { id: 9, name: 'QuizUp', icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" rx="20" fill="%234ecdc4"/><text x="50" y="50" text-anchor="middle" dy="0.3em" fill="white" font-family="sans-serif" font-size="30" font-weight="bold">?</text></svg>', year: '2013-2019', revealed: false, justRevealed: false },
-  { id: 10, name: 'Meerkat', icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" rx="20" fill="%23ff9068"/><text x="50" y="50" text-anchor="middle" dy="0.3em" font-size="30">📹</text></svg>', year: '2015-2016', revealed: false, justRevealed: false },
-  { id: 11, name: 'Draw Something', icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" rx="20" fill="%23ffecd2"/><text x="50" y="50" text-anchor="middle" dy="0.3em" font-size="30">✏️</text></svg>', year: '2012-2014', revealed: false, justRevealed: false },
-  { id: 12, name: 'Color', icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" rx="20" fill="%23a8edea"/><text x="50" y="50" text-anchor="middle" dy="0.3em" font-size="30">🎨</text></svg>', year: '2011-2012', revealed: false, justRevealed: false },
-  { id: 13, name: 'Ping', icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" rx="20" fill="%23ff8a80"/><text x="50" y="50" text-anchor="middle" dy="0.3em" fill="white" font-family="sans-serif" font-size="16" font-weight="bold">PING</text></svg>', year: '2010-2012', revealed: false, justRevealed: false },
-  { id: 14, name: 'Yik Yak', icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" rx="20" fill="%23558b2f"/><text x="50" y="50" text-anchor="middle" dy="0.3em" fill="white" font-family="sans-serif" font-size="18" font-weight="bold">YY</text></svg>', year: '2013-2017', revealed: false, justRevealed: false },
-  { id: 15, name: 'Foursquare', icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" rx="20" fill="%230099e5"/><text x="50" y="50" text-anchor="middle" dy="0.3em" font-size="30">4️⃣</text></svg>', year: '2009-2019', revealed: false, justRevealed: false },
-  { id: 16, name: 'Rdio', icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" rx="20" fill="%23007ac1"/><text x="50" y="50" text-anchor="middle" dy="0.3em" font-size="30">📻</text></svg>', year: '2010-2015', revealed: false, justRevealed: false },
-  { id: 17, name: 'Sunrise', icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" rx="20" fill="%23ffc107"/><text x="50" y="50" text-anchor="middle" dy="0.3em" font-size="30">🌅</text></svg>', year: '2013-2015', revealed: false, justRevealed: false },
-  { id: 18, name: 'Mailbox', icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" rx="20" fill="%2329b6f6"/><text x="50" y="50" text-anchor="middle" dy="0.3em" font-size="30">📫</text></svg>', year: '2013-2015', revealed: false, justRevealed: false },
-])
+// Create a reactive copy of the shared apps and add reveal state
+const apps = reactive(
+  sharedApps.map(app => ({
+    ...app,
+    revealed: false,
+    justRevealed: false
+  }))
+)
 
-// Computed properties
-const appsRevealed = computed(() => apps.value.filter(app => app.revealed).length)
-const totalApps = computed(() => apps.value.length)
+const appsRevealed = computed(() => apps.filter(app => app.revealed).length)
+const totalApps = computed(() => apps.length)
 
-// Methods
+const router = useRouter()
 const revealApp = (app) => {
   if (!app.revealed) {
     app.revealed = true
     app.justRevealed = true
-    
-    // Remove the just revealed effect after animation
     setTimeout(() => {
       app.justRevealed = false
     }, 1000)
-    
-    // Add some celebration
     console.log(`🎉 You revealed ${app.name}!`)
   }
 }
 
+const handleAppClick = (app) => {
+  if (!app.revealed) {
+    revealApp(app)
+  } else {
+    goToApp(app)
+  }
+}
+
+const goToApp = (app) => {
+  router.push(`/app/${app.id}`)
+}
+
 const revealRandomApp = () => {
-  const unrevealedApps = apps.value.filter(app => !app.revealed)
+  const unrevealedApps = apps.filter(app => !app.revealed)
   if (unrevealedApps.length > 0) {
     const randomApp = unrevealedApps[Math.floor(Math.random() * unrevealedApps.length)]
     revealApp(randomApp)
