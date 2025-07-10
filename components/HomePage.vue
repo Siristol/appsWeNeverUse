@@ -33,12 +33,12 @@
 
     <!-- App Grid -->
     <div class="container mx-auto px-4 pb-16">
-      <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6 max-w-6xl mx-auto">
+      <div class="grid grid-cols-4 gap-8 max-w-5xl mx-auto">
         <div
           v-for="app in apps"
           :key="app.id"
           @click="revealApp(app)"
-          class="app-card relative aspect-square rounded-2xl overflow-hidden cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+          class="app-card relative aspect-square rounded-3xl overflow-hidden cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
           :class="{
             'blur-md grayscale': !app.revealed,
             'shadow-lg shadow-purple-500/25': app.revealed
@@ -49,7 +49,7 @@
             <img
               :src="app.icon"
               :alt="app.name"
-              class="w-16 h-16 md:w-20 md:h-20 rounded-xl object-cover"
+            class="w-28 h-28 md:w-32 md:h-32 rounded-2xl object-cover"
               :class="{ 'filter blur-sm': !app.revealed }"
             />
             
