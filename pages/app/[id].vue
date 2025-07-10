@@ -1,24 +1,30 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex flex-col items-center justify-center px-4 py-12">
-    <div v-if="app" class="w-full max-w-lg bg-white/10 rounded-3xl shadow-xl p-8 flex flex-col items-center">
-      <img :src="app.icon" :alt="app.name" class="w-32 h-32 rounded-2xl object-cover mb-6" />
-      <h1 class="text-4xl font-bold text-white mb-2">{{ app.name }}</h1>
-      <div class="text-gray-300 text-lg mb-4">{{ app.year }}</div>
-      <div class="text-white text-base mb-4">{{ app.description }}</div>
-      <div class="flex flex-wrap gap-4 mb-4">
-        <span class="bg-pink-500/80 text-white px-3 py-1 rounded-full text-sm font-semibold">⭐ {{ app.rating }}</span>
-        <span class="bg-blue-500/80 text-white px-3 py-1 rounded-full text-sm font-semibold">📅 {{ app.year }}</span>
+  <div class="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex flex-col items-center px-4 py-20">
+    <div v-if="app" class="w-full max-w-3xl flex flex-col items-center">
+      <!-- Top: Logo and Name -->
+      <div class="flex flex-col items-center mb-40">
+        <img :src="app.icon" :alt="app.name" class="w-52 h-52 md:w-96 md:h-96 rounded-3xl object-cover mb-10" />
+        <h1 class="text-6xl md:text-8xl font-extrabold text-white mb-4 drop-shadow-2xl text-center leading-tight">{{ app.name }}</h1>
       </div>
-      <div v-if="app.screenshots && app.screenshots.length" class="w-full mb-4">
-        <div class="text-white font-semibold mb-2">Skjermbilder:</div>
-        <div class="flex gap-2 overflow-x-auto">
-          <img v-for="(shot, i) in app.screenshots" :key="i" :src="shot" class="h-32 rounded-lg border border-white/20" />
+      <!-- Scroll-revealed content -->
+      <div v-intersect.fade-up class="w-full max-w-3xl bg-white/10 rounded-3xl shadow-2xl p-16 flex flex-col items-center mb-16">
+        <div class="text-gray-300 text-3xl mb-8 font-bold tracking-wide">{{ app.year }}</div>
+        <div class="text-white text-2xl md:text-3xl mb-10 leading-relaxed text-center">{{ app.description }}</div>
+        <div class="flex flex-wrap gap-8 mb-10">
+          <span class="bg-pink-500/90 text-white px-8 py-3 rounded-full text-2xl font-bold shadow-lg">⭐ {{ app.rating }}</span>
+          <span class="bg-blue-500/90 text-white px-8 py-3 rounded-full text-2xl font-bold shadow-lg">📅 {{ app.year }}</span>
         </div>
+        <div v-if="app.screenshots && app.screenshots.length" class="w-full mb-10">
+          <div class="text-white font-bold text-2xl mb-4">Skjermbilder:</div>
+          <div class="flex gap-6 overflow-x-auto pb-2">
+            <img v-for="(shot, i) in app.screenshots" :key="i" :src="shot" class="h-56 rounded-2xl border-2 border-white/30 shadow-xl" />
+          </div>
+        </div>
+        <div class="text-gray-200 italic text-2xl text-center mt-8 mb-8">{{ app.commentary }}</div>
+        <NuxtLink to="/" class="mt-12 inline-block text-3xl text-purle-300 hover:text-pink-400 font-extrabold underline underline-offset-8">← Tilbake</NuxtLink>
       </div>
-      <div class="text-gray-200 italic text-center mt-4">{{ app.commentary }}</div>
-      <NuxtLink to="/" class="mt-8 inline-block text-purple-300 hover:text-pink-400 font-bold">← Tilbake</NuxtLink>
     </div>
-    <div v-else class="text-white text-2xl">Appen ble ikke funnet.</div>
+    <div v-else class="text-white text-4xl font-bold">Appen ble ikke funnet.</div>
   </div>
 </template>
 
@@ -40,3 +46,37 @@ const app = computed(() => {
   return base && reveal ? { ...base, ...reveal } : base
 })
 </script>
+
+<script>
+// Simple fade-up directive for scroll-reveal
+export default {
+  directives: {
+    intersect: {
+      mounted(el, binding) {
+        el.style.opacity = 0;
+        el.style.transform = 'translateY(40px)';
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              el.style.transition = 'opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1)';
+              el.style.opacity = 1;
+              el.style.transform = 'translateY(0)';
+              observer.disconnect();
+            }
+          },
+          { threshold: 0.15 }
+        );
+        observer.observe(el);
+      }
+    }
+  }
+}
+</script>
+
+<style scoped>
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+}
+</style>
