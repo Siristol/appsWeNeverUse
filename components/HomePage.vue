@@ -3,13 +3,13 @@
     <!-- Header -->
     <header class="text-center py-12 px-4">
       <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight">
-        Apps We <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">Never Use</span>
+        Apper <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400"> vi aldri bruker</span>
       </h1>
       <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-        📱 A nostalgic journey through the digital graveyard of mobile apps that once ruled our screens
+        📱 En nostalgisk reise gjennom den digitale gravplassen for apper som en gang dominerte skjermene våre.
       </p>
       <p class="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">
-        Click the blurred icons below to reveal forgotten apps and relive the memories! 🕹️
+        Klikk på de uklare ikonene nedenfor for å avsløre glemte apper og gjenoppleve minnene! 🕹️
       </p>
     </header>
 
@@ -18,15 +18,15 @@
       <div class="flex justify-center gap-8 md:gap-16 text-white">
         <div class="text-center">
           <div class="text-3xl md:text-4xl font-bold text-pink-400">{{ appsRevealed }}</div>
-          <div class="text-sm text-gray-400">Apps Revealed</div>
+          <div class="text-sm text-gray-400">Åpnede apper</div>
         </div>
         <div class="text-center">
           <div class="text-3xl md:text-4xl font-bold text-purple-400">{{ totalApps }}</div>
-          <div class="text-sm text-gray-400">Total Apps</div>
+          <div class="text-sm text-gray-400">Totale apper</div>
         </div>
         <div class="text-center">
           <div class="text-3xl md:text-4xl font-bold text-blue-400">{{ Math.round((appsRevealed / totalApps) * 100) }}%</div>
-          <div class="text-sm text-gray-400">Progress</div>
+          <div class="text-sm text-gray-400">Fremdrift</div>
         </div>
       </div>
     </div>
@@ -89,17 +89,17 @@
     <div class="text-center pb-16 px-4">
       <div class="max-w-2xl mx-auto">
         <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">
-          Remember These Digital Relics? 🏛️
+          Husker du disse appene? 🏛️
         </h3>
         <p class="text-gray-300 mb-8">
-          Each app tells a story of ambition, innovation, and sometimes spectacular failure. 
-          Click to uncover the rise and fall of mobile history!
+          Hver app forteller en historie om ambisjon, innovasjon og noen ganger spektakulære fiaskoer. 
+          Klikk for å avdekke mobilhistoriens opp- og nedturer!
         </p>
         <button
           @click="revealRandomApp"
           class="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
         >
-          🎲 Reveal Random App
+          🎲 Åpne en tilfeldig app
         </button>
       </div>
     </div>
