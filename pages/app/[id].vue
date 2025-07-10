@@ -1,5 +1,7 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex flex-col items-center px-4 py-20">
+  <div class="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex flex-col items-center px-4 py-20 relative">
+    <!-- Top left back button -->
+    <NuxtLink to="/" class="absolute left-0 top-0 mt-8 ml-8 text-3xl text-purle-300 hover:text-pink-400 font-extrabold underline underline-offset-8 z-20">← Tilbake</NuxtLink>
     <div v-if="app" class="w-full max-w-3xl flex flex-col items-center">
       <!-- Top: Logo and Name -->
       <div class="flex flex-col items-center mb-40">
