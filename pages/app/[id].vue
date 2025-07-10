@@ -12,9 +12,6 @@
       <div v-intersect.fade-up class="w-full max-w-3xl bg-white/10 rounded-3xl shadow-2xl p-16 flex flex-col items-center mb-16">
         <div class="text-gray-300 text-3xl mb-8 font-bold tracking-wide">{{ app.year }}</div>
         <div class="text-white text-2xl md:text-3xl mb-10 leading-relaxed text-center">{{ app.description }}</div>
-        <div class="flex flex-wrap gap-8 mb-10">
-          <span class="bg-pink-500/90 text-white px-8 py-3 rounded-full text-2xl font-bold shadow-lg">⭐ {{ app.rating }}</span>
-        </div>
         <div v-if="app.screenshots && app.screenshots.length" class="w-full mb-10">
           <div class="text-white font-bold text-2xl mb-4">Skjermbilder:</div>
           <div class="flex gap-6 overflow-x-auto pb-2">
