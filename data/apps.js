@@ -1,4 +1,6 @@
 // Shared app data for both HomePage and app/[id]
+// Vine, flappy-bird, smittestopp, tips, været, kart, BeReal, dagbok, Jodel, Måleverktøy
+
 export const apps = [
   {
     id: 1,
