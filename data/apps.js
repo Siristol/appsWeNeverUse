@@ -21,9 +21,9 @@ export const apps = [
   {
     id: 3,
     name: 'Flappy Bird',
-    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" rx="20" fill="%2370c5ce"/><text x="50" y="50" text-anchor="middle" dy="0.3em" font-size="30">🐦</text></svg>',
+    icon: '/logos/flappybird.jpg',
     description: 'Det enkle, men frustrerende spillet som tok verden med storm før det plutselig forsvant fra app-butikkene.',
-    screenshots: ['/flappybird.png', '/flappybird2.png'],
+    screenshots: [],
     commentary: 'Hvor langt kom du egentlig? Be honest.',
   },
   // ...legg til flere apper her med tilsvarende struktur...
