@@ -41,7 +41,8 @@
           class="app-card relative aspect-square rounded-3xl overflow-hidden cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
           :class="{
             'blur-md grayscale': !app.revealed,
-            'shadow-lg shadow-purple-500/25': app.revealed
+            'shadow-lg shadow-purple-500/25': app.revealed,
+            'animate-shake': app.shaking
           }"
         >
           <!-- App Icon -->
@@ -114,9 +115,12 @@ import { storeToRefs } from 'pinia'
 
 const appRevealsStore = useAppRevealsStore()
 const { reveals } = storeToRefs(appRevealsStore)
+import { ref } from 'vue'
+const shakingAppId = ref(null)
 const apps = computed(() => sharedApps.map(app => ({
   ...app,
-  ...reveals.value.find(r => r.id === app.id)
+  ...reveals.value.find(r => r.id === app.id),
+  shaking: shakingAppId.value === app.id
 })))
 
 const appsRevealed = computed(() => reveals.value.filter(app => app.revealed).length)
@@ -129,12 +133,28 @@ const playIceSong = () => {
   audio.play()
 }
 
+const triggerConfetti = () => {
+  // Simple confetti burst using canvas-confetti if available
+  if (typeof window !== 'undefined' && window.confetti) {
+    window.confetti({
+      particleCount: 120,
+      spread: 80,
+      origin: { y: 0.6 }
+    })
+  }
+}
+
 const handleAppClick = (app) => {
   if (app.id === 11) {
     playIceSong()
   }
   if (!app.revealed) {
-    appRevealsStore.revealApp(app.id)
+    shakingAppId.value = app.id
+    setTimeout(() => {
+      shakingAppId.value = null
+      appRevealsStore.revealApp(app.id)
+      triggerConfetti()
+    }, 1000)
   } else {
     goToApp(app)
   }
@@ -152,6 +172,38 @@ const revealRandomApp = () => {
   }
 }
 </script>
+
+<style scoped>
+.app-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.app-card:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-2px); }
+  20%, 80% { transform: translateX(4px); }
+  30%, 50%, 70% { transform: translateX(-8px); }
+  40%, 60% { transform: translateX(8px); }
+}
+.animate-shake {
+  animation: shake 0.9s cubic-bezier(.36,.07,.19,.97) both;
+}
+</style>
 
 <style scoped>
 .app-card {
