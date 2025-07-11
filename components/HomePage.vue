@@ -50,7 +50,7 @@
               :src="app.icon"
               :alt="app.name"
             class="w-28 h-28 md:w-32 md:h-32 rounded-3xl object-cover"
-              :class="{ 'filter blur-sm': !app.revealed }"
+              :class="{ 'filter blur-2xl grayscale contrast-50 brightness-75': !app.revealed }"
             />
             
             <!-- Overlay for unrevealed apps -->
