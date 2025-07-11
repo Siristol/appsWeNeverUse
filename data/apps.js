@@ -28,11 +28,11 @@ export const apps = [
   },
   {
     id: 4,
-    name: 'Tips',
-    icon: '/logos/tips.jpg',
-    description: 'Appen som skulle gi deg nyttige tips og triks, men som de fleste aldri åpnet.',
+    name: 'IceIceBaby',
+    icon: '/logos/iceicebaby.jpg',
+    description: 'Mohahaha! Du er blitt icet! Du vet hva du må gjøre!',
     screenshots: [],
-    commentary: 'Fant du noen gang et tips du faktisk brukte?',
+    commentary: 'Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! ',
   },
   {
     id: 5,
@@ -81,14 +81,13 @@ export const apps = [
     description: 'Appen som lot deg måle ting med mobilen, men hvor nøyaktig var den egentlig?',
     screenshots: [],
     commentary: 'Hva var det første du prøvde å måle?',
-  },
-  {
-    id: 11,
-    name: 'IceIceBaby',
-    icon: '/logos/iceicebaby.jpg',
-    description: 'Mohahaha! Du er blitt icet! Du vet hva du må gjøre!',
-    screenshots: [],
-    commentary: 'Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! ',
-  },
- 
+  }, 
+  // {
+  //   id: 4,
+  //   name: 'Tips',
+  //   icon: '/logos/tips.jpg',
+  //   description: 'Appen som skulle gi deg nyttige tips og triks, men som de fleste aldri åpnet.',
+  //   screenshots: [],
+  //   commentary: 'Fant du noen gang et tips du faktisk brukte?',
+  // },
 ];

@@ -33,7 +33,7 @@
 
     <!-- App Grid -->
     <div class="container mx-auto px-4 pb-16">
-      <div class="grid grid-cols-4 gap-8 max-w-5xl mx-auto">
+      <div class="grid grid-cols-5 gap-8 max-w-5xl mx-auto">
         <div
           v-for="app in apps"
           :key="app.id"
