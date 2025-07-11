@@ -82,5 +82,13 @@ export const apps = [
     screenshots: [],
     commentary: 'Hva var det første du prøvde å måle?',
   },
+  {
+    id: 11,
+    name: 'IceIceBaby',
+    icon: '/logos/iceicebaby.jpg',
+    description: 'Mohahaha! Du er blitt icet! Du vet hva du må gjøre!',
+    screenshots: [],
+    commentary: 'Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! ',
+  },
  
 ];
