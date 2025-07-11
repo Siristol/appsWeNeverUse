@@ -123,7 +123,16 @@ const appsRevealed = computed(() => reveals.value.filter(app => app.revealed).le
 const totalApps = computed(() => reveals.value.length)
 
 const router = useRouter()
+
+const playIceSong = () => {
+  const audio = new Audio('/iceicebaby.mp3')
+  audio.play()
+}
+
 const handleAppClick = (app) => {
+  if (app.id === 11) {
+    playIceSong()
+  }
   if (!app.revealed) {
     appRevealsStore.revealApp(app.id)
   } else {
