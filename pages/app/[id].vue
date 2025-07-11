@@ -42,8 +42,8 @@
 </template>
 
 <script setup>
-import { useRoute } from 'vue-router'
-import { computed, ref, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { computed, ref, onMounted, onUnmounted, watch } from 'vue'
 import { apps } from '~/data/apps.js'
 import { useAppRevealsStore } from '~/stores/appReveals.js'
 import { storeToRefs } from 'pinia'
@@ -52,11 +52,22 @@ const appRevealsStore = useAppRevealsStore()
 const { reveals } = storeToRefs(appRevealsStore)
 
 const route = useRoute()
+const router = useRouter()
 const appId = computed(() => Number(route.params.id))
 const app = computed(() => {
   const base = apps.find(a => a.id === appId.value)
   const reveal = reveals.value.find(r => r.id === appId.value)
   return base && reveal ? { ...base, ...reveal } : base
+})
+
+// Stop ice song if leaving the Ice app page (id=11) to any other page
+// Always stop the music when leaving this page, regardless of appId
+onUnmounted(() => {
+  if (typeof window !== 'undefined' && window.iceAudio) {
+    window.iceAudio.pause()
+    window.iceAudio.currentTime = 0
+    window.iceAudio = null
+  }
 })
 
 // No reveal logic needed for screenshots; each will reveal itself as it scrolls into view

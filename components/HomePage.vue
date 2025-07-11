@@ -128,9 +128,28 @@ const totalApps = computed(() => reveals.value.length)
 
 const router = useRouter()
 
+// Store audio instance globally on window so it can be stopped from any page
+if (typeof window !== 'undefined' && !window.iceAudio) {
+  window.iceAudio = null
+}
 const playIceSong = () => {
-  const audio = new Audio('/iceicebaby.mp3')
-  audio.play()
+  if (typeof window !== 'undefined') {
+    if (!window.iceAudio) {
+      window.iceAudio = new Audio('/iceicebaby.mp3')
+      window.iceAudio.loop = true
+      window.iceAudio.play()
+    } else if (window.iceAudio.paused) {
+      window.iceAudio.play()
+    }
+  }
+}
+
+const stopIceSong = () => {
+  if (typeof window !== 'undefined' && window.iceAudio) {
+    window.iceAudio.pause()
+    window.iceAudio.currentTime = 0
+    window.iceAudio = null
+  }
 }
 
 const triggerConfetti = () => {
@@ -144,7 +163,8 @@ const triggerConfetti = () => {
 }
 
 const handleAppClick = (app) => {
-  if (app.id === 11) {
+  // Only start the music when revealing the ice app for the first time
+  if (app.id === 11 && !app.revealed) {
     playIceSong()
   }
   if (!app.revealed) {
