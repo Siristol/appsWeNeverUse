@@ -134,7 +134,6 @@ const playIceSong = () => {
 }
 
 const triggerConfetti = () => {
-  // Simple confetti burst using canvas-confetti if available
   if (typeof window !== 'undefined' && window.confetti) {
     window.confetti({
       particleCount: 120,
