@@ -22,8 +22,8 @@ export const apps = [
     id: 3,
     name: 'Smittestopp',
     icon: '/logos/smittestopp.png',
-    description: 'Norsk smittesporingsapp lansert under pandemien. Ble mye diskutert og til slutt avviklet.',
-    screenshots: [],
+    description: 'Vi husker alle de tøffe tider under pandemien. Smittestopp var Norges forsøk på smittesporing gjennom en app.',
+    screenshots: ['/smittestopp/bentHoye.webp', '/smittestopp/personvern.png', '/smittestopp/surBent.png'],
     commentary: 'Husker du pushvarslene fra Smittestopp? Ble du noen gang varslet?',
   },
   {
