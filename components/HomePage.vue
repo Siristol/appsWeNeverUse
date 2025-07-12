@@ -164,7 +164,7 @@ const triggerConfetti = () => {
 
 const handleAppClick = (app) => {
   // Only start the music when revealing the ice app for the first time
-  if (app.id === 11 && !app.revealed) {
+  if (app.id === 4 && !app.revealed) {
     playIceSong()
   }
   if (!app.revealed) {
