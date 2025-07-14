@@ -10,35 +10,33 @@
       </div>
       <!-- Scroll-revealed content -->
       <div v-intersect.fade-up class="w-full max-w-3xl flex flex-col items-center mb-16">
-        <div class="text-gray-300 text-3xl mb-8 font-bold tracking-wide">{{ app.year }}</div>
-        <!-- Description scroll-reveal -->
-        <div
-          class="text-white text-2xl md:text-3xl mb-10 leading-relaxed text-center"
-          v-intersect.fade-up="onDescriptionReveal"
-          ref="descRef"
-        >
-          {{ app.description }}
-        </div>
+      </div>
+      <div
+        class="text-white text-2xl md:text-3xl mb-10 leading-relaxed text-center"
+        v-intersect.fade-up="onDescriptionReveal"
+        ref="descRef"
+      >
+        {{ app.description }}
+      </div>
         <!-- Screenshots: reveal one by one as you scroll -->
-        <div v-if="app.screenshots && app.screenshots.length" class="w-full mb-10 flex flex-col gap-10">
-          <div style="height: 120px;"></div> <!-- Spacer to require more scroll before screenshots -->
-          <img
-            v-for="(shot, i) in app.screenshots"
-            :key="i"
-            :src="shot"
-            :class="[
-              'w-full max-w-2xl rounded-2xl border-2 border-white/30 shadow-xl transition-all duration-500',
-              i % 2 === 0 ? 'md:translate-x-50 md:self-end' : 'md:-translate-x-50 md:self-start'
-            ]"
-            v-intersect.fade-up
-          />
-        </div>
+      <div v-if="app.screenshots && app.screenshots.length" class="w-full mb-10 flex flex-col gap-10">
+        <div style="height: 120px;"></div>
+        <img
+          v-for="(shot, i) in app.screenshots"
+          :key="i"
+          :src="shot"
+          :class="[
+            'w-full max-w-2xl rounded-2xl border-2 border-white/30 shadow-xl transition-all duration-500',
+            i % 2 === 0 ? 'md:translate-x-50 md:self-end' : 'md:-translate-x-50 md:self-start'
+          ]"
+          v-intersect.fade-up
+          loading="lazy"
+        />
+      </div>
         <div class="text-gray-200 italic text-2xl text-center mt-8 mb-8">{{ app.commentary }}</div>
         <NuxtLink to="/" class="mt-12 inline-block text-3xl text-purle-300 hover:text-pink-400 font-extrabold underline underline-offset-8">← Tilbake</NuxtLink>
       </div>
     </div>
-    <div v-else class="text-white text-4xl font-bold">Appen ble ikke funnet.</div>
-  </div>
 </template>
 
 <script setup>
