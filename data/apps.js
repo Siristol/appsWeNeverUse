@@ -70,8 +70,8 @@ export const apps = [
     id: 9,
     name: 'Jodel',
     icon: '/logos/jodel.png',
-    description: 'Anonym lokal chat-app som var populær på campus og i byer.',
-    screenshots: [],
+    description: 'Jodel ble lansert i 2014 som en anonym lokal chat-app. Den ble raskt populær på universitetscampuser og i byer, og lot brukere dele tanker, memes og lokale nyheter uten identitet.',
+    screenshots: ['/jodel/skam.jpg', '/jodel/gravid.jpg', '/jodel/singel.jpg', '/jodel/singelSvart.jpg'],
     commentary: 'Hva var det rareste du leste på Jodel?',
   },
   {
