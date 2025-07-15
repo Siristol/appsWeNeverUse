@@ -15,7 +15,7 @@ export const apps = [
     name: 'Flappy Bird',
     icon: '/logos/flappybird.jpg',
     description: 'Det enkle, men frustrerende spillet som tok verden med storm før det plutselig forsvant fra app-butikkene.',
-    screenshots: [],
+    screenshots: ['/flappybird/takeDown.png', '/flappybird/sold.png', '/flappybird/andreApper.jpg', '/flappybird/backAgain.png'],
     commentary: 'Hvor langt kom du egentlig? Be honest.',
   },
   {
@@ -71,7 +71,7 @@ export const apps = [
     name: 'Jodel',
     icon: '/logos/jodel.png',
     description: 'Jodel ble lansert i 2014 som en anonym lokal chat-app. Den ble raskt populær på universitetscampuser og i byer, og lot brukere dele tanker, memes og lokale nyheter uten identitet.',
-    screenshots: ['/jodel/skam.jpg', '/jodel/gravid.jpg', '/jodel/singel.jpg', '/jodel/singelSvart.jpg'],
+    screenshots: ['/jodel/skam.jpg', '/jodel/gravid.jpg', '/jodel/singel.jpg', '/jodel/singelSvar.jpg'],
     commentary: 'Hva var det rareste du leste på Jodel?',
   },
   {
