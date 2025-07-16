@@ -4,14 +4,6 @@
 export const apps = [
   {
     id: 1,
-    name: 'Vine',
-    icon: '/logos/vine.png',
-    description: 'Vine var en populær app for korte, seks sekunders videoer. Den la grunnlaget for mange internett-memes og lanserte flere influencere.',
-    screenshots: [],
-    commentary: 'Husker du alle de absurde Vine-videoene? "Do it for the Vine!"',
-  },
-  {
-    id: 2,
     name: 'Flappy Bird',
     icon: '/logos/flappybird.jpg',
     description: 'Det enkle, men frustrerende spillet som tok verden med storm før det plutselig forsvant fra app-butikkene.',
@@ -19,7 +11,7 @@ export const apps = [
     commentary: 'Hvor langt kom du egentlig? Be honest.',
   },
   {
-    id: 3,
+    id: 2,
     name: 'Smittestopp',
     icon: '/logos/smittestopp.png',
     description: 'Vi husker alle de tøffe tider under pandemien. Smittestopp var Norges forsøk på smittesporing gjennom en app.',
@@ -27,7 +19,7 @@ export const apps = [
     commentary: 'Husker du pushvarslene fra Smittestopp? Ble du noen gang varslet?',
   },
   {
-    id: 4,
+    id: 3,
     name: 'IceIceBaby',
     icon: '/logos/iceicebaby.jpg',
     description: 'Mohahaha! Du er blitt icet! Du vet hva du må gjøre!',
@@ -35,15 +27,7 @@ export const apps = [
     commentary: 'Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! Ice! ',
   },
   {
-    id: 5,
-    name: 'Været',
-    icon: '/logos/været.jpg',
-    description: 'Standard vær-app, alltid installert, men sjelden brukt fordi du bare ser ut av vinduet.',
-    screenshots: [],
-    commentary: 'Stoler du mer på appen eller på å se ut av vinduet?',
-  },
-  {
-    id: 6,
+    id: 4,
     name: 'Kart',
     icon: '/logos/kart.jpg',
     description: 'Kart-appen som alltid var der, men Google Maps tok over.',
@@ -51,7 +35,7 @@ export const apps = [
     commentary: 'Har du noen gang brukt denne i stedet for Google Maps?',
   },
   {
-    id: 7,
+    id: 5,
     name: 'BeReal',
     icon: '/logos/bereal.png',
     description: 'Appen som utfordret deg til å være ekte – men hvor lenge varte det?',
@@ -59,7 +43,7 @@ export const apps = [
     commentary: 'Hvor mange dager på rad klarte du å være "BeReal"?',
   },
   {
-    id: 8,
+    id: 6,
     name: 'Dagbok',
     icon: '/logos/dagbok.jpg',
     description: 'Digital dagbok-app, perfekt for å skrive ned tanker – men hvor mange sider ble det egentlig?',
@@ -67,7 +51,7 @@ export const apps = [
     commentary: 'Skrev du dagbok hver dag, eller bare én gang?',
   },
   {
-    id: 9,
+    id: 7,
     name: 'Jodel',
     icon: '/logos/jodel.png',
     description: 'Jodel ble lansert i 2014 som en anonym lokal chat-app. Den ble raskt populær på universitetscampuser og i byer, og lot brukere dele tanker, memes og lokale nyheter uten identitet.',
@@ -75,7 +59,7 @@ export const apps = [
     commentary: 'Hva var det rareste du leste på Jodel?',
   },
   {
-    id: 10,
+    id: 8,
     name: 'Måleverktøy',
     icon: '/logos/maleverktoy.png',
     description: 'Denne appen lot deg måle ting ved bruk av mobilen, men fikk raskt rykte på seg for å være unøyaktig.',
@@ -89,5 +73,21 @@ export const apps = [
   //   description: 'Appen som skulle gi deg nyttige tips og triks, men som de fleste aldri åpnet.',
   //   screenshots: [],
   //   commentary: 'Fant du noen gang et tips du faktisk brukte?',
+  // },
+  // {
+  //   id: 5,
+  //   name: 'Været',
+  //   icon: '/logos/været.jpg',
+  //   description: 'Standard vær-app, alltid installert, men sjelden brukt fordi du bare ser ut av vinduet.',
+  //   screenshots: [],
+  //   commentary: 'Stoler du mer på appen eller på å se ut av vinduet?',
+  // },
+  // {
+  //   id: 1,
+  //   name: 'Vine',
+  //   icon: '/logos/vine.png',
+  //   description: 'Vine var en populær app for korte, seks sekunders videoer. Den la grunnlaget for mange internett-memes og lanserte flere influencere.',
+  //   screenshots: [],
+  //   commentary: 'Husker du alle de absurde Vine-videoene? "Do it for the Vine!"',
   // },
 ];
