@@ -30,8 +30,8 @@ export const apps = [
     id: 4,
     name: 'Kart',
     icon: '/logos/kart.jpg',
-    description: 'Kart-appen som alltid var der, men Google Maps tok over.',
-    screenshots: [],
+    description: 'Kart-appen har alltid vært der, men det er vel ingen som bruker den. Man bruker jo Google Maps.',
+    screenshots: ['/kart/googleErBedre.jpg', '/kart/gulf.jpg', '/kart/gulf1.jpg', '/kart/gulf2.jpg', '/kart/gulf3.jpg', '/kart/gulf4.jpg'],
     commentary: 'Har du noen gang brukt denne i stedet for Google Maps?',
   },
   {
