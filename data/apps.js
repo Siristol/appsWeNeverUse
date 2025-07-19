@@ -39,7 +39,7 @@ export const apps = [
     name: 'BeReal',
     icon: '/logos/bereal.png',
     description: 'Denne appen hadde sin storhetstid og var et godt konsept, men det varte desverre ikke så lenge. MEN! vi fikk noen genuine øyeblikk fanget på kamera.',
-    screenshots: ['/bereal/ads.jpg', '/bereal/nyttår.jpg', '/bereal/frognerparken.jpg'],
+    screenshots: ['/bereal/frognerparken.jpg ', '/bereal/nyttår.jpg', '/bereal/ads.jpg'],
     commentary: 'Hvor mange dager på rad klarte du å være "BeReal"?',
   },
   {
