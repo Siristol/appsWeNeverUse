@@ -6,9 +6,10 @@
         Apper <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400"> vi aldri bruker</span>
       </h1>
       <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-        📱 En nostalgisk reise gjennom den digitale gravplassen for apper vi alle har – men aldri egentlig bruker – og de som en gang dominerte skjermene våre.
+        📱 En nostalgisk reise gjennom den digitale gravplassen for apper vi ikke bruker. Dette er både apper som aldri har vært i bruk men som vi alle har på mobilen vår og apper som en gang i tiden hadde sine storhetsdager, men som ikke har overlevd til den dag i dag.
       </p>
       <p class="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">
+        
         Klikk på de uklare ikonene nedenfor for å avsløre glemte apper og gjenoppleve minnene! 🕹️
       </p>
     </header>
